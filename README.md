@@ -1,7 +1,7 @@
 
 <h1 align="center">Fatec Jacareí- DSM 3º SEMESTRE</h1>
 
-# <p>Equipe 💻: TechWizards </p>
+# <p>Equipe 💻: Half Tech </p>
 
 # SOBRE O PROJETO
 
@@ -10,7 +10,7 @@
 
 ## Link para o Trello
 
-Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-3-semestre) para acessar o quadro do Trello do projeto.
+Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar o quadro do Trello do projeto.
 <br>
 
 ## SPRINTS
@@ -56,13 +56,9 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-3-semestre) para acessa
 
 | NOME               | FUNÇÃO        | GITHUB                               |
 |--------------------|---------------|--------------------------------------|
-| Bruna Regra        | Project Owner | [regrabru](https://github.com/regrabru)  |
-| Pamela Freitas     | Developer     | [PaamFreitas18](https://github.com/PaamFreitas18)   |
 | Raquel Nakamura    | Developer     | [nakamuraraquel](https://github.com/nakamuraraquel) |
-| Maria Eduarda      | Developer     | [ferreira-me](https://github.com/ferreira-me) |
 | Felipe Correa      | Developer     | [turnupthetaste](https://github.com/turnupthetaste) |
 | Pollyana Sousa     | Scrum Master  | [Pollymeowth](https://github.com/Pollymeowth)  |
-| Leandro Barbosa    | Developer     | [gmlebc](https://github.com/gmlebc)|
 
 <br>
 
