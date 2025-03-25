@@ -29,14 +29,20 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 
 | REQUISITO FUNCIONAL_ID | REQUISITOS                                                                                                | SPRINTS |
 |------------------------|-----------------------------------------------------------------------------------------------------------|---------|
-
+|RF-1                    |O sistema deve restringir o acesso a usuários autenticados                                                 |         |
+|RF-2                    |O sistema deve permitir a visualização do histórico de dados de cada estação em formato tabular            |         |
+|RF-3                    |O sistema deve exibir gráficos com os parâmetros coletados por uma estação meteorológica                   |         |
+|RF-4                    |O sistema deve permitir a comparação de um mesmo parâmetro entre diferentes estações por meio de gráficos  |         |
+|RF-5                    |O sistema deve possibilitar o download de dados em formato CSV                                             |         |
 <br>
 
 ## REQUISITOS NÃO FUNCIONAIS
 
 | REQUISITO NÃO_FUNCIONAL_ID | REQUISITOS                                                                                          | SPRINTS |
 |----------------------------|-----------------------------------------------------------------------------------------------------|---------|
-
+|RNF-1                       |O sistema deve exibir gráficos interativos para melhor análise dos dados                             |         |
+|RNF-2                       |A interface deve ser responsiva, garantindo um layout consistente em diferentes dispositivos e tamanhos de tela|         |
+|RNF-3                       |O sistema deve incluir uma página explicativa sobre o projeto                                        |         |
 <br>
 
 ## :page_with_curl: USER STORIES
