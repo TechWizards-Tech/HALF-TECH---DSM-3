@@ -4,7 +4,19 @@
 # <p>Equipe 💻: Half Tech </p>
 
 # SOBRE O PROJETO
+O projeto proposto surge no contexto da disciplina de **Gestão Ágil de Projetos de Software**, ofertada pela **FATEC Jacareí**, como parte da abordagem de **Aprendizagem Baseada em Projetos (ABP)**. 
+A proposta é desenvolver uma **plataforma web interativa** capaz de disponibilizar, de forma acessível e visual, os dados meteorológicos coletados por **três estações instaladas no Lago de Furnas**. A região é caracterizada por episódios frequentes de **ventos extremos**, que colocam em risco a navegação e causam prejuízos ambientais, sociais e econômicos.
 
+A plataforma deverá possibilitar:
+- Visualização gráfica dos dados meteorológicos;
+- Acesso ao histórico de medições em formato tabular;
+- Comparação de dados entre diferentes estações;
+- Download dos dados em formato CSV;
+- Emissão de alertas sobre riscos aos navegantes da região.
+
+Ao final do projeto, espera-se entregar uma solução funcional, com **interface responsiva**, **gráficos interativos** e recursos que facilitem a análise de dados meteorológicos por parte da população.
+
+<br>
 <br>
  </p>
 
@@ -60,8 +72,8 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 
 <br>
 
-| ID REFERÊNCIA | REMETENTE | INSTRUÇÃO | FINALIDADE | REQUISITO ATENDIDO |
-|---------------|-----------|-----------|-------------|---------------------|
+| ID REFERÊNCIA | REMETENTE | INSTRUÇÃO | FINALIDADE |
+|---------------|-----------|-----------|-------------|
 | RF-1         | Usuário   | Como usuário autenticado, quero acessar o sistema apenas após realizar o login | Garantir a segurança e a integridade dos dados do sistema | 
 | RF-2         | Usuário   | Como usuário, quero visualizar o histórico de dados de uma estação em formato tabular | Facilitar a leitura e análise das informações meteorológicas | 
 | RF-3         | Usuário   | Como usuário, quero ver gráficos com os parâmetros coletados por uma estação | Obter uma visão clara e visual das medições realizadas | 
@@ -70,11 +82,6 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 | RNF-03       | Visitante | Como visitante, quero acessar uma página que explique o objetivo e funcionamento do sistema | Entender mais sobre o projeto e seu propósito | 
 
 <br>
-
-
-
-<br>
-
 
 ## :page_with_curl: EQUIPE
 
@@ -90,7 +97,17 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 
 ## LINGUAGENS E FERRAMENTAS
 <br>
+O desenvolvimento da plataforma seguirá o catálogo de tecnologias definido para o semestre, sendo elas:
+
+- **Frontend:** React com TypeScript  
+- **Backend:** Node.js  
+- **Banco de Dados:** MongoDB  
+- **Prototipação de Interface:** Figma  
+- **Controle de Versão e Tarefas:** GitHub (Repositório e GitHub Projects ou Trello)
+
 
 <span id="sprint-1">
 
 ## :page_with_curl: SPRINT 1 
+
+Nesta primeira sprint, a nossa equipe irá focar no desenvolvimento do protótipo da interface da plataforma, com páginas de login, visualização de dados e gráficos, além da criação de uma página explicativa sobre o projeto. Serão aplicados os princípios de design responsivo e o protótipo será desenvolvido no Figma. Também será configurado o ambiente de desenvolvimento com as tecnologias definidas (Node.js, React TypeScript e MongoDB) e organizado o repositório no GitHub.
