@@ -89,7 +89,7 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 
 | NOME               | FUNÇÃO        | GITHUB                               |
 |--------------------|---------------|--------------------------------------|
-| Raquel Nakamura    | Developer     | [nakamuraraquel](https://github.com/nakamuraraquel) |
+| Raquel Nakamura    | Product Owner | [nakamuraraquel](https://github.com/nakamuraraquel) |
 | Felipe Correa      | Developer     | [turnupthetaste](https://github.com/turnupthetaste) |
 | Pollyana Sousa     | Scrum Master  | [Pollymeowth](https://github.com/Pollymeowth)  |
 
