@@ -62,10 +62,11 @@ export function RegisterForm({
                             Preencha os campos abaixo para criar sua conta
                         </p>
                     </div>
-                    <div className="grid gap-6">
-                        <div className="grid gap-3">
-                            <Label htmlFor="email">Email</Label>
+                    <div className="flex flex-col gap-6 p-2 items-center">
+                        <div className="gap-3 w-[80%]">
+                            <Label className="pb-2" htmlFor="email">Email</Label>
                             <Input
+                            className="w-full"
                                 id="email"
                                 type="email"
                                 placeholder="m@example.com"
@@ -74,9 +75,10 @@ export function RegisterForm({
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
-                        <div className="grid gap-3">
-                            <Label htmlFor="username">Nome</Label>
+                        <div className="gap-3 w-[80%]">
+                            <Label className="pb-2" htmlFor="username">Nome</Label>
                             <Input
+                            className="w-full"
                                 id="username"
                                 type="text"
                                 placeholder="Seu nome completo"
@@ -85,8 +87,8 @@ export function RegisterForm({
                                 onChange={(e) => setNome(e.target.value)}
                             />
                         </div>
-                        <div className="grid gap-3">
-                            <Label htmlFor="password">Senha</Label>
+                        <div className="gap-3 w-[80%]">
+                            <Label className="pb-2" htmlFor="password">Senha</Label>
                             <Input
                                 id="password"
                                 type="password"
@@ -95,8 +97,8 @@ export function RegisterForm({
                                 onChange={(e) => setSenha(e.target.value)}
                             />
                         </div>
-                        <div className="grid gap-3">
-                            <Label htmlFor="confirm-password">Confirmar senha</Label>
+                        <div className="gap-3 w-[80%]">
+                            <Label className="pb-2" htmlFor="confirm-password">Confirmar senha</Label>
                             <Input
                                 id="confirm-password"
                                 type="password"
@@ -105,7 +107,7 @@ export function RegisterForm({
                                 onChange={(e) => setConfirmSenha(e.target.value)}
                             />
                         </div>
-                        <Button type="submit" className="w-full">
+                        <Button type="submit" className="w-[80%]">
                             Criar conta
                         </Button>
                     </div>

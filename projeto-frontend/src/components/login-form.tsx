@@ -51,10 +51,11 @@ export function LoginForm({
               Acesse sua conta com seu e-mail e senha
             </p>
           </div>
-          <div className="grid gap-6">
-            <div className="grid gap-3">
-              <Label htmlFor="email">Email</Label>
+          <div className="flex flex-col gap-6 p-2 items-center">
+            <div className="gap-3 w-[80%]">
+              <Label className="pb-2" htmlFor="email">Email</Label>
               <Input
+                className="w-full"
                 id="email"
                 type="email"
                 placeholder="m@example.com"
@@ -63,9 +64,11 @@ export function LoginForm({
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="grid gap-3">
+
+            <div className="gap-3 w-[80%]">
               <Label htmlFor="password">Senha</Label>
               <Input
+                className="w-full"
                 id="password"
                 type="password"
                 required
@@ -73,7 +76,8 @@ export function LoginForm({
                 onChange={(e) => setSenha(e.target.value)}
               />
             </div>
-            <Button type="submit" className="w-full">
+
+            <Button type="submit" className="w-[80%]">
               Entrar
             </Button>
           </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LoginForm } from "@/components/login-form";
 import { RegisterForm } from "@/components/register-form";
-import bgImage from "../../public/11.jpg";
+import bgImage from "../../public/10.jpg";
 
 export default function Home() {
     const [isLogin, setIsLogin] = useState(true);
