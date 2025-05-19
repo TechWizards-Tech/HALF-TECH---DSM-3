@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { LoginForm } from "@/components/login-form";
-import { RegisterForm } from "@/components/register-form";
-import bgImage from "../../public/10.jpg";
 
-export default function Home() {
+import { LoginForm } from "./Loginform";
+import { RegisterForm } from "./Registerform";
+import bgImage from "/10.jpg";
+
+export default function Login() {
     const [isLogin, setIsLogin] = useState(true);
 
     return (

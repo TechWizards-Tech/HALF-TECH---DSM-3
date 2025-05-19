@@ -11,5 +11,3 @@ export default router;
 
 
     
-/*routes/auth.ts – Rotas de autenticação
-Define os caminhos de API /auth/register e /auth/login:*/

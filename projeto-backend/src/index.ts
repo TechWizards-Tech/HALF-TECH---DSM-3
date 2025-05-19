@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 import dadosRouter from './routes/dados';
 import authRouter from './routes/auth';
 
@@ -9,20 +10,22 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Configurar CORS corretamente antes das rotas
+// ✅ Configurar CORS
 app.use(cors({
-  origin: 'http://localhost:5173', // frontend Vite
+  origin: 'http://localhost:5173',
   credentials: true
 }));
 
-app.use(express.json());
+// ✅ Usando body-parser explicitamente
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// ✅ Conexão com o MongoDB
+// ✅ MongoDB
 mongoose.connect(process.env.MONGO_URI!)
   .then(() => console.log('✅ MongoDB conectado!'))
   .catch((err) => console.error('❌ Erro MongoDB:', err));
 
-// ✅ Rotas da API com prefixo /api
+// ✅ Rotas
 app.use('/api/dados', dadosRouter);
 app.use('/api/auth', authRouter);
 

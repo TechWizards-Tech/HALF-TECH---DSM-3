@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import logo from "../../public/Logos.png"
+import logo from "/Logos.png";
 
 export function LoginForm({
   className,
@@ -94,7 +94,9 @@ export function LoginForm({
         </form>
         <div className="w-full md:w-1/2 flex flex-col p-6 items-center text-justify gap-10 justify-center">
           <h1 className="top-1.5 text-2xl md:text-3xl font-bold">SOBRE</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam non orci et nisl laoreet sollicitudin. Quisque tortor purus, tincidunt eu risus vel, tristique molestie turpis. Pellentesque vitae justo elit. Sed molestie ligula ut velit sollicitudin, et tincidunt lorem vehicula. Nulla et orci eu ligula tempor tempor vel quis est. Nulla vitae laoreet nibh, eu eleifend nibh. Donec nisl libero, dignissim faucibus facilisis a, ultrices ac massa. Sed non nunc condimentum, interdum risus a, ultrices dolor.
+          <p>O Wizard Winds é uma plataforma digital desenvolvida por estudantes da Fatec Jacareí em parceria com o CNPq e a Universidade Federal de Itajubá. Seu propósito é monitorar, organizar e disponibilizar dados meteorológicos coletados por estações instaladas no Lago de Furnas — uma região estratégica, onde ventos extremos representam riscos reais à navegação e à segurança das comunidades locais.
+            <br />
+            Através de gráficos interativos, tabelas informativas e um sistema intuitivo, a plataforma oferece uma forma acessível de compreender o comportamento climático da região. O projeto busca unir tecnologia, ciência e responsabilidade social para promover a conscientização, apoiar decisões mais seguras e fortalecer a relação entre dados ambientais e qualidade de vida nos 30 municípios que circundam o lago.
           </p>
         </div>
       </div>

@@ -5,11 +5,18 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 // Registro
-// Registro
-// Registro
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { nome, email, password } = req.body;
+
+    // ✅ Validação de senha antes da criptografia
+    const senhaValida = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/.test(password);
+    if (!senhaValida) {
+      res.status(400).json({
+        message: "Senha nao atende aos requisitos. registerUser .userControler.ts"
+      });
+      return;
+    }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -27,8 +34,6 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     res.status(500).json({ message: "Erro ao registrar usuário." });
   }
 };
-
-
 
 // Login
 export const loginUser = async (req: Request, res: Response): Promise<void> => {

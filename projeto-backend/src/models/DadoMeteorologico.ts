@@ -11,6 +11,8 @@ const dadoMeteorologicoSchema = new mongoose.Schema({
   pressao: { type: Number, required: true }
 });
 
+
+
 export default mongoose.model('DadoMeteorologico', dadoMeteorologicoSchema);
 
 
