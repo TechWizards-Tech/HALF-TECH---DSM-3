@@ -29,8 +29,8 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 
 | Sprint | Link        | Início      | Entrega     | Status |
 |--------|-------------|-------------|-------------|--------|
-| 01     | [Sprint 01](#sprint-1) | 24/03/2025 | 15/04/2025 |  Em andamento  |
-| 02     | [Sprint 02](#sprint-2) | 16/04/2025 | 13/05/2025 |    |
+| 01     | [Sprint 01](#sprint-1) | 24/03/2025 | 15/04/2025 |  ✔  |
+| 02     | [Sprint 02](#sprint-2) | 16/04/2025 | 13/05/2025 | Em andamento    |
 | 03     | [Sprint 03](#sprint-3) | 14/05/2025 | 11/06/2025 |    |
 
 <br>
@@ -41,20 +41,20 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 
 | REQUISITO FUNCIONAL_ID | REQUISITOS                                                                                                | SPRINTS |
 |------------------------|-----------------------------------------------------------------------------------------------------------|---------|
-|RF-1                    |O sistema deve restringir o acesso a usuários autenticados                                                 |         |
-|RF-2                    |O sistema deve permitir a visualização do histórico de dados de cada estação em formato tabular            |         |
-|RF-3                    |O sistema deve exibir gráficos com os parâmetros coletados por uma estação meteorológica                   |         |
-|RF-4                    |O sistema deve permitir a comparação de um mesmo parâmetro entre diferentes estações por meio de gráficos  |         |
-|RF-5                    |O sistema deve possibilitar o download de dados em formato CSV                                             |         |
+|RF-1                    |O sistema deve restringir o acesso a usuários autenticados                                                 |#02✔    |
+|RF-2                    |O sistema deve permitir a visualização do histórico de dados de cada estação em formato tabular            |#03      |
+|RF-3                    |O sistema deve exibir gráficos com os parâmetros coletados por uma estação meteorológica                   |#02      |
+|RF-4                    |O sistema deve permitir a comparação de um mesmo parâmetro entre diferentes estações por meio de gráficos  |#03      |
+|RF-5                    |O sistema deve possibilitar o download de dados em formato CSV                                             |#03      |
 <br>
 
 ## REQUISITOS NÃO FUNCIONAIS
 
 | REQUISITO NÃO_FUNCIONAL_ID | REQUISITOS                                                                                          | SPRINTS |
 |----------------------------|-----------------------------------------------------------------------------------------------------|---------|
-|RNF-01                       |O sistema deve exibir gráficos interativos para melhor análise dos dados                             |         |
-|RNF-02                       |A interface deve ser responsiva, garantindo um layout consistente em diferentes dispositivos e tamanhos de tela| #01        |
-|RNF-03                       |O sistema deve incluir uma página explicativa sobre o projeto                                        |#01        |
+|RNF-01                       |O sistema deve exibir gráficos interativos para melhor análise dos dados                             |#03      |
+|RNF-02                       |A interface deve ser responsiva, garantindo um layout consistente em diferentes dispositivos e tamanhos de tela| #01✔ #02    |
+|RNF-03                       |O sistema deve incluir uma página explicativa sobre o projeto                                        |#01✔        |
 <br>
 
 ## RESTRIÇÕES DO PROJETO
@@ -89,7 +89,7 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 
 | NOME               | FUNÇÃO        | GITHUB                               |
 |--------------------|---------------|--------------------------------------|
-| Raquel Nakamura    | Developer     | [nakamuraraquel](https://github.com/nakamuraraquel) |
+| Raquel Nakamura    | Product Owner | [nakamuraraquel](https://github.com/nakamuraraquel) |
 | Felipe Correa      | Developer     | [turnupthetaste](https://github.com/turnupthetaste) |
 | Pollyana Sousa     | Scrum Master  | [Pollymeowth](https://github.com/Pollymeowth)  |
 
@@ -111,3 +111,8 @@ O desenvolvimento da plataforma seguirá o catálogo de tecnologias definido par
 ## :page_with_curl: SPRINT 1 
 
 Nesta primeira sprint, a nossa equipe irá focar no desenvolvimento do protótipo da interface da plataforma, com páginas de login, visualização de dados e gráficos, além da criação de uma página explicativa sobre o projeto. Serão aplicados os princípios de design responsivo e o protótipo será desenvolvido no Figma. Também será configurado o ambiente de desenvolvimento com as tecnologias definidas (Node.js, React TypeScript e MongoDB) e organizado o repositório no GitHub.
+
+
+## :page_with_curl: SPRINT 2
+
+Durante a Sprint 2, a equipe irá implementar o sistema de **autenticação de usuários**, para garantir que apenas usuários logados possam realizar download dos dados meteorológicos (função que será implementada na sprint 3). Também será desenvolvida a funcionalidade de **exibição de gráficos interativos**, permitindo a visualização dos dados coletados por cada estação meteorológica. Além disso, a interface foi aprimorada para garantir **responsividade**, oferecendo uma boa experiência em diferentes dispositivos e tamanhos de tela.
