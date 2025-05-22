@@ -61,8 +61,8 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 
 | **RESTRIÇÕES DO PROJETO_ID** | **REQUISITOS**                                                                                                                                  | **SPRINTS** |
 |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| **RP-01** | O protótipo da interface do sistema deve ser desenvolvido e validado utilizando o Figma. | #01          |
-| **RP-02** | O sistema deve seguir o catálogo de tecnologias definido para o semestre, incluindo: O sistema deve utilizar **Node.js** (servidor), **React TypeScript** (interface), **MongoDB** (armazenamento), **GitHub** (documentação) e **GitHub Projects** ou **Trello** (controle de tarefas). | #01         |
+| **RP-01** | O protótipo da interface do sistema deve ser desenvolvido e validado utilizando o Figma. | #01✔          |
+| **RP-02** | O sistema deve seguir o catálogo de tecnologias definido para o semestre, incluindo: O sistema deve utilizar **Node.js** (servidor), **React TypeScript** (interface), **MongoDB** (armazenamento), **GitHub** (documentação) e **GitHub Projects** ou **Trello** (controle de tarefas). | #01✔         |
 
 
 
