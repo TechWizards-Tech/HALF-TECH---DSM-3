@@ -11,7 +11,6 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Configurar CORS
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true
