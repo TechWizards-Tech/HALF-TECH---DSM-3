@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { getAllDados } from "@/services/dadoService";
+import { baixarCSV } from "@/services/downloadservice";  // importar a função de download
 
 interface DadoMeteorologico {
   reading_time: string;
@@ -38,8 +39,25 @@ export default function WeatherTable({ className }: WeatherTableProps) {
     fetchData();
   }, []);
 
+  async function handleDownload() {
+    try {
+      await baixarCSV();
+    } catch (error) {
+      alert("Erro ao baixar o arquivo CSV.");
+    }
+  }
+
   return (
     <div className={cn("overflow-x-auto rounded-xl border border-gray-500 shadow-md shadow-orange-500/50", className)}>
+      <div className="p-4">
+        <button
+          onClick={handleDownload}
+          className="mb-4 rounded bg-orange-500 px-4 py-2 text-white hover:bg-orange-600 transition"
+        >
+          Download
+        </button>
+      </div>
+
       <table className="min-w-full text-sm text-left text-gray-700">
         <thead className="text-xs uppercase bg-gray-100 text-gray-600">
           <tr>
