@@ -1,8 +1,7 @@
-// src/components/WeatherTable.tsx
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { getAllDados } from "@/services/dadoService";
-import { baixarCSV } from "@/services/downloadservice";  // importar a função de download
+import { baixarCSV } from "@/services/downloadservice";
 
 interface DadoMeteorologico {
   reading_time: string;
@@ -25,8 +24,13 @@ interface WeatherTableProps {
 
 export default function WeatherTable({ className }: WeatherTableProps) {
   const [data, setData] = useState<DadoMeteorologico[]>([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    // Verifica se existe token no localStorage
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+
     const fetchData = async () => {
       try {
         const dados = await getAllDados();
@@ -40,6 +44,10 @@ export default function WeatherTable({ className }: WeatherTableProps) {
   }, []);
 
   async function handleDownload() {
+    if (!isLoggedIn) {
+      alert("Você precisa estar logado para baixar o arquivo CSV.");
+      return;
+    }
     try {
       await baixarCSV();
     } catch (error) {
@@ -48,11 +56,23 @@ export default function WeatherTable({ className }: WeatherTableProps) {
   }
 
   return (
-    <div className={cn("overflow-x-auto rounded-xl border border-gray-500 shadow-md shadow-orange-500/50", className)}>
+    <div
+      className={cn(
+        "overflow-x-auto rounded-xl border border-gray-500 shadow-md shadow-orange-500/50",
+        className
+      )}
+    >
       <div className="p-4">
         <button
           onClick={handleDownload}
-          className="mb-4 rounded bg-orange-500 px-4 py-2 text-white hover:bg-orange-600 transition"
+          disabled={!isLoggedIn}
+          className={cn(
+            "mb-4 rounded px-4 py-2 text-white transition",
+            isLoggedIn
+              ? "bg-orange-500 hover:bg-orange-600"
+              : "bg-gray-400 cursor-not-allowed"
+          )}
+          title={isLoggedIn ? "Download CSV" : "Faça login para baixar o CSV"}
         >
           Download
         </button>
@@ -98,4 +118,5 @@ export default function WeatherTable({ className }: WeatherTableProps) {
       </table>
     </div>
   );
+
 }
