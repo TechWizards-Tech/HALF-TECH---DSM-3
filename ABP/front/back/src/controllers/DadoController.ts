@@ -63,3 +63,46 @@ export const getAllDados = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Erro ao obter dados para tabela" });
   }
 };
+
+// Retorna todos os campos do dado mais recente
+export const getLatestReading = async (req: Request, res: Response) => {
+  try {
+    const dados = await DadoMeteorologico.find()
+      .sort({ reading_time: -1 })
+      .limit(50);
+
+    const dadosOrdenados = dados.reverse();
+
+    const dadosFormatados = dadosOrdenados.map((item) => {
+      const date = new Date(item.reading_time);
+      return {
+        Id: item._id,
+        "Temp – Temperatura do ar (°C)": item.temp,
+        "Hum – Umidade relativa do ar (%)": item.hum,
+        "cab_temp – Temperatura da cabine (°C)": item.cab_temp,
+        "bat_volts – Tensão da bateria (V)": item.bat_volts,
+        "uv_level – Irradiação solar (w/m²)": item.uv_level,
+        "Bar – Pressão atmosférica (hPa)": item.bar,
+        "wind_peak – Pico de intensidade do vento (m/s)": item.wind_peak,
+        "wind_rt – Intensidade do vento (m/s)": item.wind_rt,
+        "wind_avg – Intensidade média do vento (m/s)": item.wind_avg,
+        "wind_dir_rt – Direção do vento (°)": item.wind_dir_rt,
+        "wind_dir_avg – Direção média do vento (°)": item.wind_dir_avg,
+        "reading_time – Data do registro (AA-MM-DD HH:MM:SS)": date.toLocaleString("pt-BR", {
+          year: "2-digit",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        }),
+      };
+    });
+
+    res.status(200).json(dadosFormatados);
+  } catch (error) {
+    console.error("Erro ao obter dados mais recentes:", error);
+    res.status(500).json({ message: "Erro ao obter dados mais recentes" });
+  }
+};
