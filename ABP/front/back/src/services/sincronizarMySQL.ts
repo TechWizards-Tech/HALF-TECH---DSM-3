@@ -8,7 +8,6 @@ function iniciarContagemRegressiva() {
   const intervalo = setInterval(() => {
     tempoRestante--;
 
-    // Mostrar no console a cada 60 segundos
     if (tempoRestante % 60 === 0 || tempoRestante <= 10) {
       const minutos = Math.floor(tempoRestante / 60);
       const segundos = tempoRestante % 60;
@@ -17,11 +16,47 @@ function iniciarContagemRegressiva() {
 
     if (tempoRestante <= 0) {
       clearInterval(intervalo);
-      tempoRestante = 600; // Reinicia a contagem
+      tempoRestante = 600;
       sincronizarDados();
       iniciarContagemRegressiva();
     }
   }, 1000);
+}
+
+async function limparColecaoDadoMeteorologico() {
+  try {
+    const result = await DadoMeteorologico.deleteMany({});
+    console.log(`🧹 Coleção limpa com sucesso. ${result.deletedCount} documentos removidos.`);
+  } catch (err) {
+    console.error('❌ Erro ao limpar a coleção:', err);
+  }
+}
+
+async function removerDuplicados() {
+  try {
+    const duplicados = await DadoMeteorologico.aggregate([
+      {
+        $group: {
+          _id: "$reading_time",
+          count: { $sum: 1 },
+          ids: { $push: "$_id" },
+        },
+      },
+      { $match: { count: { $gt: 1 } } },
+    ]);
+
+    for (const grupo of duplicados) {
+      const [manter, ...remover] = grupo.ids;
+      await DadoMeteorologico.deleteMany({ _id: { $in: remover } });
+      console.log(`🧹 Removidos ${remover.length} duplicados com reading_time: ${grupo._id}`);
+    }
+
+    if (duplicados.length === 0) {
+      console.log("✅ Nenhum duplicado encontrado.");
+    }
+  } catch (err) {
+    console.error("❌ Erro ao remover duplicados:", err);
+  }
 }
 
 export async function sincronizarDados() {
@@ -33,6 +68,7 @@ export async function sincronizarDados() {
     const [rows] = await mysqlConnection.query('SELECT * FROM Sensor ORDER BY reading_time DESC LIMIT 60');
     const registros = rows as any[];
 
+    await limparColecaoDadoMeteorologico(); // ou comente aqui se quiser manter histórico
     for (const dado of registros) {
       await DadoMeteorologico.updateOne(
         { reading_time: dado.reading_time },
@@ -42,6 +78,10 @@ export async function sincronizarDados() {
     }
 
     console.log(`✅ ${registros.length} registros sincronizados do MySQL`);
+
+    // ✅ Remover duplicados após sincronização
+    await removerDuplicados();
+
   } catch (err) {
     console.error('❌ Erro ao sincronizar MySQL : ', err);
   } finally {
@@ -49,5 +89,4 @@ export async function sincronizarDados() {
   }
 }
 
-// Inicia a contagem regressiva ao carregar o módulo
 iniciarContagemRegressiva();

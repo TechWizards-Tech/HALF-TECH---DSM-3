@@ -1,19 +1,3 @@
-
-// import mongoose from 'mongoose';
-
-// const dadoMeteorologicoSchema = new mongoose.Schema({
-//   estacao: { type: String, required: true },
-//   dataHora: { type: Date, required: true },
-//   temperatura: { type: Number, required: true },
-//   umidade: { type: Number, required: true },
-//   velocidadeVento: { type: Number, required: true },
-//   direcaoVento: { type: String, required: true },
-//   pressao: { type: Number, required: true }
-// });
-
-// export default mongoose.model('DadoMeteorologico', dadoMeteorologicoSchema);
-
-
 import mongoose from 'mongoose';
 
 const DadoSchema = new mongoose.Schema({
@@ -30,5 +14,43 @@ const DadoSchema = new mongoose.Schema({
   wind_dir_avg: Number,
   reading_time: { type: String, required: true, unique: true },
 }, { timestamps: true });
+
+
+// ✅ Garante índice único no campo reading_time
+DadoSchema.index({ reading_time: 1 }, { unique: true });
+
+// ✅ Executa script de remoção de duplicados apenas uma vez
+async function removerDuplicados() {
+  const model = mongoose.models.DadoMeteorologico;
+  if (!model) return;
+
+  console.log("🔍 Verificando duplicatas em 'reading_time'...");
+
+  const duplicados = await model.aggregate([
+    {
+      $group: {
+        _id: "$reading_time",
+        count: { $sum: 1 },
+        ids: { $push: "$_id" }
+      }
+    },
+    {
+      $match: {
+        count: { $gt: 1 }
+      }
+    }
+  ]);
+
+  for (const grupo of duplicados) {
+    // Mantém o primeiro, remove os restantes
+    const [manter, ...remover] = grupo.ids;
+    await model.deleteMany({ _id: { $in: remover } });
+    console.log(`🧹 Removidos ${remover.length} duplicados com reading_time ${grupo._id}`);
+  }
+
+  console.log("✅ Limpeza de duplicatas concluída.");
+}
+
+removerDuplicados().catch(console.error);
 
 export const DadoMeteorologico = mongoose.model('DadoMeteorologico', DadoSchema);
