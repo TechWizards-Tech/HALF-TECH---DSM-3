@@ -65,7 +65,7 @@ export async function sincronizarDados() {
   console.log('⏰ Iniciando sincronização com MySQL...');
 
   try {
-    const [rows] = await mysqlConnection.query('SELECT * FROM Sensor ORDER BY reading_time DESC LIMIT 60');
+    const [rows] = await mysqlConnection.query('SELECT * FROM Sensor ORDER BY reading_time DESC LIMIT 600');
     const registros = rows as any[];
 
     await limparColecaoDadoMeteorologico(); // ou comente aqui se quiser manter histórico

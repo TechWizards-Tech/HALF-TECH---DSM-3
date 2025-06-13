@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { DadoMeteorologico } from "../models/DadoMeteorologico";
 
-// ✅ Retorna dados para o gráfico (últimos 12)
+// ✅ Retorna dados para o gráfico (últimos 12 registros)
 export const getChartData = async (req: Request, res: Response) => {
   try {
     const dados = await DadoMeteorologico.find()
@@ -42,7 +42,7 @@ export const getAllDados = async (req: Request, res: Response) => {
 
       return {
         id: item._id,
-        reading_time: data.toISOString(), // frontend usa toLocaleString()
+        reading_time: data.toISOString(),
         temp: item.temp,
         hum: item.hum,
         cab_temp: item.cab_temp,
@@ -64,7 +64,7 @@ export const getAllDados = async (req: Request, res: Response) => {
   }
 };
 
-// Retorna todos os campos do dado mais recente
+// ✅ Retorna os 50 dados mais recentes, formatados para tabela avançada
 export const getLatestReading = async (req: Request, res: Response) => {
   try {
     const dados = await DadoMeteorologico.find()
@@ -104,5 +104,69 @@ export const getLatestReading = async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Erro ao obter dados mais recentes:", error);
     res.status(500).json({ message: "Erro ao obter dados mais recentes" });
+  }
+};
+
+
+export const getChartDataLast3Days = async (req: Request, res: Response) => {
+  try {
+    const dados = await DadoMeteorologico.find()
+      .sort({ reading_time: -1 })
+      .limit(36);
+
+    const dadosOrdenados = dados.reverse();
+
+    const chartData = dadosOrdenados.map((item) => {
+      const date = new Date(item.reading_time);
+      const hora = date.toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      return {
+        month: hora,
+        year: "",
+        desktop: item.wind_rt,
+        mobile: item.wind_avg,
+      };
+    });
+
+    res.status(200).json(chartData);
+  } catch (error) {
+    console.error("Erro ao obter dados para gráfico:", error);
+    res.status(500).json({ message: "Erro ao obter dados do gráfico" });
+  }
+};
+
+
+ 
+
+export const getChartDataLast12Hours = async (req: Request, res: Response) => {
+  try {
+    const dados = await DadoMeteorologico.find()
+      .sort({ reading_time: -1 })
+      .limit(24);
+
+    const dadosOrdenados = dados.reverse();
+
+    const chartData = dadosOrdenados.map((item) => {
+      const date = new Date(item.reading_time);
+      const hora = date.toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      return {
+        month: hora,
+        year: "",
+        desktop: item.wind_rt,
+        mobile: item.wind_avg,
+      };
+    });
+
+    res.status(200).json(chartData);
+  } catch (error) {
+    console.error("Erro ao obter dados para gráfico:", error);
+    res.status(500).json({ message: "Erro ao obter dados do gráfico" });
   }
 };
