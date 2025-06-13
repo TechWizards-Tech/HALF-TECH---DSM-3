@@ -12,8 +12,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-import { getChartData } from "@/services/dadoService"; // ajuste o caminho se necessário
+import { getChartData } from "@/services/dadoService";
 
 interface DataEntry {
   name: string;
@@ -30,9 +29,9 @@ export default function Areachart2() {
         const apiData = await getChartData();
 
         const formatted = apiData.map((item: any) => ({
-          name: item.month,    // exemplo, ajuste conforme o campo correto do seu backend
-          varA: item.desktop,  // exemplo, ajuste conforme seus dados
-          varB: item.mobile,   // exemplo, ajuste conforme seus dados
+          name: item.month,    // ajuste conforme os campos corretos
+          varA: item.desktop,  // ajuste conforme seus dados
+          varB: item.mobile,   // ajuste conforme seus dados
         }));
 
         setData(formatted);
@@ -45,9 +44,9 @@ export default function Areachart2() {
   }, []);
 
   return (
-    <Card className="p-4 rounded-2xl shadow-md border-gray-500 shadow-zinc-500/50">
+    <Card className="p-4 rounded-2xl shadow-md border-2 border-black shadow-zinc-500/50">
       <CardHeader>
-        <CardTitle className="text-xl">Comparativo de Variáveis (Área)</CardTitle>
+        <CardTitle className="text-xl">Pico de velocidade/Média de velocidade (m/s)</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="w-full h-72">
@@ -62,17 +61,19 @@ export default function Areachart2() {
                 yAxisId="left"
                 type="monotone"
                 dataKey="varA"
+                name="Pico do Vento"
                 stroke="#8884d8"
                 fill="#8884d8"
-                fillOpacity={0.3}
+                fillOpacity={0.5}
               />
               <Area
                 yAxisId="left"
                 type="monotone"
                 dataKey="varB"
+                name="Média do Vento"
                 stroke="#82ca9d"
                 fill="#82ca9d"
-                fillOpacity={0.3}
+                fillOpacity={0.25}
               />
             </RechartsAreaChart>
           </ResponsiveContainer>
