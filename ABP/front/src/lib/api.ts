@@ -13,7 +13,8 @@ export async function register(nome: string, email: string, senha: string) {
   const response = await fetch(`${API_URL}/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome, email, password: senha }),
+    body: JSON.stringify({ nome, email, password: senha }), // ✅ AQUI ESTÁ A CORREÇÃO
   });
   return response.json();
 }
+

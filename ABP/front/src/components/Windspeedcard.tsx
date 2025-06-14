@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Wind } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
 
 interface WindspeedcardProps {
   currentSpeed: number;
   maxSpeed: number;
   unit?: string;
   direction?: string;
+  theme?: "light" | "dark";
 }
 
 const Windspeedcard = ({
@@ -16,11 +16,8 @@ const Windspeedcard = ({
   maxSpeed,
   unit = "km/h",
   direction = "NO",
+  theme = "light",
 }: WindspeedcardProps) => {
-  // Calculate percentage for progress bar
-  const percentage = Math.min((currentSpeed / maxSpeed) * 100, 100);
-
-  // Determine wind strength category
   const getWindCategory = (speed: number): string => {
     if (speed < 20) return "Fraco";
     if (speed < 40) return "Moderado";
@@ -28,7 +25,6 @@ const Windspeedcard = ({
     return "Tempestade";
   };
 
-  // Get color based on wind speed
   const getColorClass = (speed: number): string => {
     if (speed < 20) return "text-green-500";
     if (speed < 40) return "text-blue-500";
@@ -36,23 +32,26 @@ const Windspeedcard = ({
     return "text-red-500";
   };
 
-  // Get background color for progress bar
-  const getProgressColor = (speed: number): string => {
-    if (speed < 20) return "bg-green-500";
-    if (speed < 40) return "bg-blue-500";
-    if (speed < 60) return "bg-yellow-500";
-    return "bg-red-500";
-  };
+  // Header e CardContent com fundo translúcido e blur
+  const headerBgClass =
+    theme === "dark"
+      ? "bg-[rgba(30,64,175,0.1)] backdrop-blur-sm"
+      : "bg-[rgba(191,219,254,0.15)] backdrop-blur-sm";
+
+  const contentBgClass =
+    theme === "dark"
+      ? "bg-[rgba(255,255,255,0.03)] backdrop-blur-sm"
+      : "bg-[rgba(255,255,255,0.2)] backdrop-blur-sm";
 
   return (
-    <Card className="overflow-hidden p-0 shadow-md shadow-blue-500/50 border-gray-500 ">
-      <CardHeader className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-950 text-2xl">
+    <Card className={`overflow-hidden p-0 w-[50%] bg-transparent shadow-md`}>
+      <CardHeader className={`${headerBgClass} text-2xl`}>
         <CardTitle className="flex items-center justify-between">
           <span>Velocidade do Vento</span>
           <Wind className="size-10" />
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className={contentBgClass}>
         <div className="flex flex-col">
           <div className="flex justify-between items-center mb-2">
             <div className="text-3xl font-bold tracking-tight flex items-baseline">
@@ -62,13 +61,6 @@ const Windspeedcard = ({
             <div className="bg-muted px-2 py-1 rounded text-xs">
               Direção: {direction}
             </div>
-          </div>
-
-          <div className="relative">
-            <Progress
-              value={percentage}
-              className={`h-2 mt-2 [&>div]:${getProgressColor(currentSpeed)}`}
-            />
           </div>
 
           <div className="flex justify-between items-center mt-4">

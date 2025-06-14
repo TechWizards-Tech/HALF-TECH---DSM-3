@@ -27,7 +27,6 @@ export default function WeatherTable({ className }: WeatherTableProps) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Verifica se existe token no localStorage
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
 
@@ -58,7 +57,7 @@ export default function WeatherTable({ className }: WeatherTableProps) {
   return (
     <div
       className={cn(
-        "overflow-x-auto rounded-xl border border-gray-500 shadow-md shadow-orange-500/50",
+        "overflow-x-auto rounded-xl border border-border shadow shadow-muted bg-background text-foreground",
         className
       )}
     >
@@ -67,10 +66,10 @@ export default function WeatherTable({ className }: WeatherTableProps) {
           onClick={handleDownload}
           disabled={!isLoggedIn}
           className={cn(
-            "mb-4 rounded px-4 py-2 text-white transition",
+            "mb-4 rounded px-4 py-2 transition text-white",
             isLoggedIn
-              ? "bg-orange-500 hover:bg-orange-600"
-              : "bg-gray-400 cursor-not-allowed"
+              ? "bg-primary hover:bg-primary/90"
+              : "bg-muted text-muted-foreground cursor-not-allowed"
           )}
           title={isLoggedIn ? "Download CSV" : "Faça login para baixar o CSV"}
         >
@@ -78,8 +77,8 @@ export default function WeatherTable({ className }: WeatherTableProps) {
         </button>
       </div>
 
-      <table className="min-w-full text-sm text-left text-gray-700">
-        <thead className="text-xs uppercase bg-gray-100 text-gray-600">
+      <table className="min-w-full text-sm text-left text-foreground bg-background">
+        <thead className="text-xs uppercase bg-muted text-muted-foreground">
           <tr>
             <th className="px-6 py-3">Data do Registro</th>
             <th className="px-6 py-3">Temperatura do Ar (°C)</th>
@@ -95,10 +94,10 @@ export default function WeatherTable({ className }: WeatherTableProps) {
             <th className="px-6 py-3">Direção Média do Vento (°)</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="divide-y divide-border">
           {data.map((item, index) => (
             <tr key={index}>
-              <td className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">
+              <td className="px-6 py-3 font-medium whitespace-nowrap">
                 {new Date(item.reading_time).toLocaleString("pt-BR")}
               </td>
               <td className="px-6 py-3 whitespace-nowrap">{item.temp}</td>
@@ -118,5 +117,4 @@ export default function WeatherTable({ className }: WeatherTableProps) {
       </table>
     </div>
   );
-
 }

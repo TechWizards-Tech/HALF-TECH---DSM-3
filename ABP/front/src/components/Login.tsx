@@ -1,47 +1,37 @@
 import { useState } from "react";
-
-import { CloudRainWind } from 'lucide-react';
 import { LoginForm } from "./Loginform";
-import { Registerform } from "./Registerform";
+import { RegisterForm } from "./Registerform";
+import bgImage from "/10.jpg";
 
-export default function Login() {
-    const [isLogin, setIsLogin] = useState(true);
+interface LoginProps {
+  theme?: "light" | "dark";
+}
 
-    return (
-        <div className="grid min-h-svh lg:grid-cols-2 b-0">
-            <div className="flex flex-col gap-4 p-6 md:p-10">
-                <div className="flex justify-center gap-2 md:justify-start">
-                    <a href="#" className="flex items-center text-2xl font-bold">
-                        TechWinds
-                        <CloudRainWind className="stroke-2 size-15" />
-                    </a>
-                </div>
-                <div className="flex flex-1 items-center justify-center">
-                    <div className="w-full max-w-xs">
-                        {isLogin ? (
-                            <LoginForm
-                                className="border border-secundary rounded-2xl p-6"
-                                onClick={() => setIsLogin(false)}
-                            />
-                        ) : (
-                            <Registerform
-                                className="border border-secundary rounded-2xl p-4"
-                                onClick={() => setIsLogin(true)}
-                            />
-                        )}
-                    </div>
-                </div>
-            </div>
-            <div className="relative hidden lg:block">
-                <img
-                    src="14.jpg"
-                    alt="Image"
-                    className="rounded-sm grayscale-90 absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-                />
-                <div className="absolute inset-0 bg-gradient-to-l from-white via-transparent to-white opacity-100"></div>
-            </div>
+export default function Login({ theme = "light" }: LoginProps) {
+  const [isLogin, setIsLogin] = useState(true);
 
+  // Classes de fundo conforme o tema
+  const overlayBg =
+    theme === "dark"
+      ? "bg-[rgba(0,0,0,0.6)] backdrop-blur-sm text-white"
+      : "bg-[rgba(255,255,255,0.4)] backdrop-blur-sm text-black";
 
+  return (
+    <div
+      className="grid min-h-svh bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      <div className={`flex flex-col gap-4 ${overlayBg}`}>
+        <div className="flex flex-1 items-center justify-center">
+          <div className="w-4/5 my-8 md:my-0">
+            {isLogin ? (
+              <LoginForm className="p-6" onClick={() => setIsLogin(false)} />
+            ) : (
+              <RegisterForm className="p-6" onClick={() => setIsLogin(true)} />
+            )}
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }

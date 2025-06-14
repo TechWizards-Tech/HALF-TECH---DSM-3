@@ -15,38 +15,39 @@ const StationSelector: React.FC<StationSelectorProps> = ({
   showFullWidth = false,
 }) => {
   return (
-    <div className="flex flex-row p-2 rounded-2xl shadow-xl border-gray-500 shadow-zinc-500/50">
-    <ToggleGroup
-      type="single"
-      value={selectedStation}
-      onValueChange={(value) => {
-        if (value) onStationChange(value);
-      }}
-      className={className}
-    >
-      <ToggleGroupItem
-        className={showFullWidth ? "flex-1" : ""}
-        value="estacao1"
-        aria-label="Estação 1"
+     <div className="flex flex-col items-center w-full h-[100%] ">
+    <span className="text-lg font-semibold my-10">Escolha a estação:</span>
+      <ToggleGroup
+        type="single"
+        value={selectedStation}
+        onValueChange={(value) => {
+          if (value) onStationChange(value);
+        }}
+        className={className}
       >
-        Estação 1
-      </ToggleGroupItem>
-      <ToggleGroupItem
-        className={showFullWidth ? "flex-1" : ""}
-        value="estacao2"
-        aria-label="Estação 2"
-      >
-        Estação 2
-      </ToggleGroupItem>
-      <ToggleGroupItem
-        className={showFullWidth ? "flex-1" : ""}
-        value="estacao3"
-        aria-label="Estação 3"
-      >
-        Estação 3
-      </ToggleGroupItem>
-    </ToggleGroup>
-    </div>
+        <ToggleGroupItem
+          className={showFullWidth ? "flex-1 mb-0" : "mb-0"}
+          value="estacao1"
+          aria-label="Estação 1"
+        >
+          Estação 1
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          className={showFullWidth ? "flex-1 mb-0" : "mb-0"}
+          value="estacao2"
+          aria-label="Estação 2"
+        >
+          Estação 2
+        </ToggleGroupItem>
+        <ToggleGroupItem
+          className={showFullWidth ? "flex-1 mb-0" : "mb-0"}
+          value="estacao3"
+          aria-label="Estação 3"
+        >
+          Estação 3
+        </ToggleGroupItem>
+      </ToggleGroup>
+  </div>
   );
 };
 

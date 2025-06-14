@@ -40,24 +40,24 @@ const NavigationAlert: React.FC<NavigationAlertProps> = ({
   // Configurações para cada nível de risco
   const riskConfig = {
     baixo: {
-      bgColor: "bg-green-100 border-green-400",
+      bgColor: "text-green-800 border-green-400 w-[100%]  ",
       title: "Navegação Segura",
-      icon: <Ship  className="h-7! w-7! stroke-green-800" />,
+      icon: <Ship  className="h-6! w-20! stroke-green-800" />,
     },
     moderado: {
-      bgColor: "bg-yellow-100 border-yellow-400",
+      bgColor: "text-yellow-800 border-yellow-400 w-[100%]",
       title: "Navegação com Atenção",
-      icon: <Sailboat className="h-7! w-7! stroke-yellow-800" />,
+      icon: <Sailboat className="h-6! w-6! stroke-yellow-800" />,
     },
     alto: {
-      bgColor: "bg-orange-100 border-orange-400",
+      bgColor: "text-orange-800 border-orange-400 w-[100%]",
       title: "Navegação de Risco",
-      icon: <AlertTriangle className="h-7! w-7! stroke-orange-800" />,
+      icon: <AlertTriangle className="h-6! w-6! stroke-orange-800" />,
     },
     extremo: {
-      bgColor: "bg-red-100 border-red-400",
+      bgColor: "text-red-800 border-red-400 w-[100%]",
       title: "Navegação Perigosa",
-      icon: <Ban className="h-7! w-7! stroke-red-800" />,
+      icon: <Ban className="h-6! w-6! stroke-red-800" />,
     }
   };
   
@@ -66,12 +66,11 @@ const NavigationAlert: React.FC<NavigationAlertProps> = ({
   return (
     <Alert className={cn(
       config.bgColor, 
-      "flex items-center border-l-4 shadow-md my-2 overflow-hidden", 
+      "flex justify-center items-center border-l-4 shadow-md my-2 ", 
       className
     )}>
       {config.icon}
-      <AlertTitle className="text-lg font-semibold">{config.title}</AlertTitle>
-      {config.icon}
+      <AlertTitle className="text-lg font-semibold  items-center px-8">{config.title}</AlertTitle>
     </Alert>
   );
 };
