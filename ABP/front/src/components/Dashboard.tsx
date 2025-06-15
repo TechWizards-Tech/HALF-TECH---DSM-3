@@ -1,5 +1,4 @@
 import { LogIn, LogOut, Sun, Moon } from "lucide-react";
-import Wavecard from "./Wavecard";
 import Windspeedcard from "./Windspeedcard";
 import Areachart2 from "./Areachart2";
 import WeatherTable from "./Weathertable";
@@ -12,7 +11,7 @@ import logo from "/Logos.png";
 import { getChartData } from "@/services/dadoService";
 
 export default function Dashboard() {
-  const [selectedStation, setSelectedStation] = useState("estacao2");
+  const [selectedStation, setSelectedStation] = useState("estacao1");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [windSpeed, setWindSpeed] = useState<number | null>(null);
   const [isDark, setIsDark] = useState<boolean>(() => {

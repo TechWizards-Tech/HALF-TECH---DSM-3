@@ -19,16 +19,16 @@ const Windspeedcard = ({
   theme = "light",
 }: WindspeedcardProps) => {
   const getWindCategory = (speed: number): string => {
-    if (speed < 20) return "Fraco";
-    if (speed < 40) return "Moderado";
-    if (speed < 60) return "Forte";
+    if (speed <= 20) return "Fraco";
+    if (speed <= 40) return "Moderado";
+    if (speed >= 50 && speed <= 60) return "Forte";
     return "Tempestade";
   };
 
   const getColorClass = (speed: number): string => {
-    if (speed < 20) return "text-green-500";
-    if (speed < 40) return "text-blue-500";
-    if (speed < 60) return "text-yellow-500";
+    if (speed <= 20) return "text-green-500";
+    if (speed <= 40) return "text-blue-500";
+    if (speed >= 50 && speed <= 60) return "text-yellow-500";
     return "text-red-500";
   };
 
