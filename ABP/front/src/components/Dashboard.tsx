@@ -58,9 +58,9 @@ export default function Dashboard() {
   }
 
   return (
-    <><header className="w-full border-b border-border bg-background p-4 flex items-center justify-between">
-  {/* Logo na extrema esquerda da tela */}
-  <div className="flex-shrink-0">
+    <><header className="relative w-full min-h-[96px] border-b border-border bg-background p-4 flex items-center justify-between">
+  {/* Logo à esquerda */}
+  <div className="flex-shrink-0 z-10">
     <a href="#">
       <img
         src={logo}
@@ -70,18 +70,17 @@ export default function Dashboard() {
     </a>
   </div>
 
-  {/* Alerta centralizado (ocupa o máximo possível, mas não quebra o layout) */}
- <div className="max-w-xl w-full mx-auto px-4">
-  <NavigationAlert
-    waveHeight={currentWaveHeight}
-    windSpeed={windSpeed || 0}
-    className="animate-fade-in"
-  />
-</div>
+  {/* Alerta centralizado, em camada inferior */}
+  <div className="absolute left-1/2 top-4 transform -translate-x-1/2 w-full max-w-xl px-4 z-0">
+    <NavigationAlert
+      waveHeight={currentWaveHeight}
+      windSpeed={windSpeed || 0}
+      className="animate-fade-in"
+    />
+  </div>
 
-
-  {/* Botões na extrema direita da tela */}
-  <div className="flex flex-col items-end gap-2 flex-shrink-0 min-w-[140px]">
+  {/* Botões à direita */}
+  <div className="flex flex-col items-end gap-2 flex-shrink-0 min-w-[140px] z-10">
     <div className="flex items-center gap-2">
       <Button
         variant="ghost"
@@ -114,6 +113,7 @@ export default function Dashboard() {
     </p>
   </div>
 </header>
+
 
 
 
