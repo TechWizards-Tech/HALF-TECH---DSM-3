@@ -65,7 +65,7 @@ const Windspeedcard = ({
 
           <div className="flex justify-between items-center mt-4">
             <div className="text-sm text-muted-foreground">
-              Max: {maxSpeed} {unit}
+              
             </div>
             <div
               className={`text-sm font-medium ${getColorClass(currentSpeed)}`}

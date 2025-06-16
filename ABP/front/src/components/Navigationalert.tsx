@@ -58,19 +58,17 @@ const NavigationAlert: React.FC<NavigationAlertProps> = ({
 
   return (
     <Alert
-      className={cn(
-        config.borderColor,
-        config.textColor,
-        config.bgColor,
-        "flex items-center border-l-4 shadow-md w-full my-2",
-        className
-      )}
-    >
-      {config.icon}
-      <AlertTitle className="text-lg font-semibold px-4">
-        {config.title}
-      </AlertTitle>
-    </Alert>
+  className={cn(
+    config.borderColor,
+    config.textColor,
+    config.bgColor,
+    "flex items-center justify-center gap-3 border-l-4 shadow-md w-full my-2 text-center",
+    className
+  )}
+>
+  {config.icon}
+  <AlertTitle className="text-lg font-semibold">{config.title}</AlertTitle>
+</Alert>
   );
 };
 
