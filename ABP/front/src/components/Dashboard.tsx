@@ -109,7 +109,7 @@ export default function Dashboard() {
     </div>
 
     <p className="text-sm text-muted-foreground text-right">
-      Deseja fazer download dos dados? (É necessário estar logado)
+      
     </p>
   </div>
 </header>

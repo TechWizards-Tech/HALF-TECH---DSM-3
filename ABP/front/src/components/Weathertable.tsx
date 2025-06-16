@@ -62,20 +62,27 @@ export default function WeatherTable({ className }: WeatherTableProps) {
       )}
     >
       <div className="p-4">
-        <button
-          onClick={handleDownload}
-          disabled={!isLoggedIn}
-          className={cn(
-            "mb-4 rounded px-4 py-2 transition text-white",
-            isLoggedIn
-              ? "bg-primary hover:bg-primary/90"
-              : "bg-muted text-muted-foreground cursor-not-allowed"
-          )}
-          title={isLoggedIn ? "Download CSV" : "Faça login para baixar o CSV"}
-        >
-          Download
-        </button>
-      </div>
+  <div className="relative group inline-block">
+    <button
+      onClick={handleDownload}
+      disabled={!isLoggedIn}
+      className={cn(
+        "mb-4 rounded px-4 py-2 transition text-white",
+        isLoggedIn
+          ? "bg-primary hover:bg-primary/90"
+          : "bg-muted text-muted-foreground cursor-not-allowed"
+      )}
+    >
+      Download
+    </button>
+
+    {!isLoggedIn && (
+      <span className="absolute left-1/2 -translate-x-1/2 mt-1 w-max bg-gray-700 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        Faça login para baixar o CSV
+      </span>
+    )}
+  </div>
+</div>
 
       <table className="min-w-full text-sm text-left text-foreground bg-background">
         <thead className="text-xs uppercase bg-muted text-muted-foreground">
