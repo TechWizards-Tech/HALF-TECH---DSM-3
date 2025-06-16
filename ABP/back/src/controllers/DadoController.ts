@@ -4,12 +4,14 @@ import { DadoMeteorologico } from "../models/DadoMeteorologico";
 // ✅ Retorna dados para o gráfico (últimos 12 registros)
 export const getChartData = async (req: Request, res: Response) => {
   try {
-    const dados = await DadoMeteorologico.find()
-      .sort({ reading_time: -1 })
+    // Busca os 12 registros mais recentes (ordem decrescente)
+    const dadosRecentes = await DadoMeteorologico.find()
       .limit(12);
 
-    const dadosOrdenados = dados.reverse();
+    // Reverte para ordem cronológica crescente (mais antigo primeiro)
+    const dadosOrdenados = dadosRecentes.reverse();
 
+    // Monta o array formatado para o gráfico
     const chartData = dadosOrdenados.map((item) => {
       const date = new Date(item.reading_time);
       const hora = date.toLocaleTimeString("pt-BR", {
@@ -18,10 +20,10 @@ export const getChartData = async (req: Request, res: Response) => {
       });
 
       return {
-        month: hora,
-        year: "",
-        desktop: item.wind_rt,
-        mobile: item.wind_avg,
+        month: hora,               // horário formatado (ex: "14:30")
+        year: "",                  // campo mantido vazio
+        desktop: item.wind_rt,     // eixo Y 1
+        mobile: item.wind_avg,     // eixo Y 2
       };
     });
 
@@ -35,7 +37,7 @@ export const getChartData = async (req: Request, res: Response) => {
 // ✅ Retorna todos os dados formatados para tabela
 export const getAllDados = async (req: Request, res: Response) => {
   try {
-    const dados = await DadoMeteorologico.find().sort({ reading_time: -1 });
+    const dados = await DadoMeteorologico.find();
 
     const tabela = dados.map((item) => {
       const data = new Date(item.reading_time);
@@ -68,7 +70,6 @@ export const getAllDados = async (req: Request, res: Response) => {
 export const getLatestReading = async (req: Request, res: Response) => {
   try {
     const dados = await DadoMeteorologico.find()
-      .sort({ reading_time: -1 })
       .limit(50);
 
     const dadosOrdenados = dados.reverse();
@@ -110,11 +111,12 @@ export const getLatestReading = async (req: Request, res: Response) => {
 
 export const getChartDataLast3Days = async (req: Request, res: Response) => {
   try {
-    const dados = await DadoMeteorologico.find()
-      .sort({ reading_time: -1 })
+    // Busca os 36 registros mais recentes (ordem decrescente por reading_time)
+    const dadosRecentes = await DadoMeteorologico.find()
       .limit(36);
 
-    const dadosOrdenados = dados.reverse();
+    // Reverte para exibir do mais antigo para o mais recente
+    const dadosOrdenados = dadosRecentes.reverse();
 
     const chartData = dadosOrdenados.map((item) => {
       const date = new Date(item.reading_time);
@@ -137,17 +139,20 @@ export const getChartDataLast3Days = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Erro ao obter dados do gráfico" });
   }
 };
+
 
 
  
 
 export const getChartDataLast12Hours = async (req: Request, res: Response) => {
   try {
-    const dados = await DadoMeteorologico.find()
-      .sort({ reading_time: -1 })
+    // Busca os 24 registros mais recentes (ordem decrescente por reading_time)
+    const dadosRecentes = await DadoMeteorologico.find()
+      
       .limit(24);
 
-    const dadosOrdenados = dados.reverse();
+    // Reverte para mostrar do mais antigo para o mais recente
+    const dadosOrdenados = dadosRecentes.reverse();
 
     const chartData = dadosOrdenados.map((item) => {
       const date = new Date(item.reading_time);
@@ -170,3 +175,4 @@ export const getChartDataLast12Hours = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Erro ao obter dados do gráfico" });
   }
 };
+

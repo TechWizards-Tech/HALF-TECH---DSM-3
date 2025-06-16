@@ -58,61 +58,65 @@ export default function Dashboard() {
   }
 
   return (
-    <>
-      <header className="w-full border-b border-border bg-background p-4">
-        <div className="flex flex-col sm:flex-row justify-around items-center gap-4 w-full">
-          <div className="flex text-items-center justify-center sm:justify-start w-full sm:w-auto">
-            <a href="#">
-              <img
-                src={logo}
-                alt="Logo"
-                className="w-[80px] h-[80px] object-contain"
-              />
-            </a>
-          </div>
+    <><header className="w-full border-b border-border bg-background p-4 flex items-center justify-between">
+  {/* Logo na extrema esquerda da tela */}
+  <div className="flex-shrink-0">
+    <a href="#">
+      <img
+        src={logo}
+        alt="Logo"
+        className="w-[80px] h-[80px] object-contain"
+      />
+    </a>
+  </div>
 
-          <div className="w-full sm:w-1/2">
-            <NavigationAlert
-              waveHeight={currentWaveHeight}
-              windSpeed={windSpeed || 0}
-              className="animate-fade-in"
-            />
-          </div>
+  {/* Alerta centralizado (ocupa o máximo possível, mas não quebra o layout) */}
+ <div className="max-w-xl w-full mx-auto px-4">
+  <NavigationAlert
+    waveHeight={currentWaveHeight}
+    windSpeed={windSpeed || 0}
+    className="animate-fade-in"
+  />
+</div>
 
-          <div className="w-full sm:w-auto flex flex-col items-center sm:items-end gap-2">
-            <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                className="border border-border"
-              >
-                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </Button>
 
-              {isLoggedIn ? (
-                <Button onClick={handleLogout} className="w-32 gap-2">
-                  <span className="flex items-center justify-center">
-                    Logout
-                    <LogOut className="w-4 h-4 ml-1" />
-                  </span>
-                </Button>
-              ) : (
-                <Button asChild className="w-32 gap-2">
-                  <Link to="/login" className="flex items-center justify-center">
-                    Login
-                    <LogIn className="w-4 h-4 ml-1" />
-                  </Link>
-                </Button>
-              )}
-            </div>
+  {/* Botões na extrema direita da tela */}
+  <div className="flex flex-col items-end gap-2 flex-shrink-0 min-w-[140px]">
+    <div className="flex items-center gap-2">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={toggleTheme}
+        className="border border-border"
+      >
+        {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+      </Button>
 
-            <p className="text-sm text-muted-foreground text-center sm:text-right">
-              Deseja fazer download dos dados? (É necessário estar logado)
-            </p>
-          </div>
-        </div>
-      </header>
+      {isLoggedIn ? (
+        <Button onClick={handleLogout} className="w-32 gap-2">
+          <span className="flex items-center justify-center">
+            Logout
+            <LogOut className="w-4 h-4 ml-1" />
+          </span>
+        </Button>
+      ) : (
+        <Button asChild className="w-32 gap-2">
+          <Link to="/login" className="flex items-center justify-center">
+            Login
+            <LogIn className="w-4 h-4 ml-1" />
+          </Link>
+        </Button>
+      )}
+    </div>
+
+    <p className="text-sm text-muted-foreground text-right">
+      Deseja fazer download dos dados? (É necessário estar logado)
+    </p>
+  </div>
+</header>
+
+
+
 
       <main className="flex flex-col lg:flex-row h-full w-full bg-background text-foreground">
         {/* <section className="w-full lg:w-[15%] border-b lg:border-b-0 lg:border-r border-border md:flex-row">
