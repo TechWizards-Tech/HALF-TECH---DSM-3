@@ -31,14 +31,13 @@ export function RegisterForm({
             const response = await register(nome, email, senha);
             console.log("Resposta do backend:", response);
 
-            if (response.error || response.message) {
-                alert("Erro: " + (response.message || response.error));
+            if (response.error) {
+                alert("Status: " + response.error);
                 return;
             }
+            alert("Cadastro realizado com sucesso! Você será direcionado para a área de login!");
+            onClick();
 
-            alert("Conta criada com sucesso!");
-            // Você pode redirecionar aqui se quiser:
-            // onClick(); 
         } catch (error: any) {
             console.error("Erro ao registrar:", error);
             alert("Erro ao registrar usuário.");

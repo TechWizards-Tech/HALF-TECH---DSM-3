@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import logo from "/Logos.png";
+import { useNavigate } from "react-router-dom";
 
 export function LoginForm({
   className,
@@ -13,6 +14,7 @@ export function LoginForm({
 }: React.ComponentProps<"form"> & { onClick: () => void }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,6 +26,7 @@ export function LoginForm({
         console.log("Login bem-sucedido:", response);
         localStorage.setItem("token", response.token);
         alert("Login realizado com sucesso!");
+        navigate("/");
         // Aqui você pode redirecionar ou mostrar a dashboard
       } else {
         alert("E-mail ou senha inválidos.");
@@ -33,6 +36,7 @@ export function LoginForm({
       alert("Erro ao realizar login.");
     }
   };
+
 
   return (
     <div className="bg-black/40  rounded-2xl p-6">

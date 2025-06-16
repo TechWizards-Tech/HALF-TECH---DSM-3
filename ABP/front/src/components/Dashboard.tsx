@@ -1,25 +1,24 @@
 import { LogIn, LogOut, Sun, Moon } from "lucide-react";
-import Wavecard from "./Wavecard";
 import Windspeedcard from "./Windspeedcard";
 import Areachart2 from "./Areachart2";
 import WeatherTable from "./Weathertable";
 import { useEffect, useState } from "react";
-import StationSelector from "./Stationselector";
+//import StationSelector from "./Stationselector";
 import { Button } from "./ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import NavigationAlert from "./Navigationalert";
 import logo from "/Logos.png";
 import { getChartData } from "@/services/dadoService";
 
 export default function Dashboard() {
-  const [selectedStation, setSelectedStation] = useState("estacao2");
+  //const [selectedStation, setSelectedStation] = useState("estacao1");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [windSpeed, setWindSpeed] = useState<number | null>(null);
   const [isDark, setIsDark] = useState<boolean>(() => {
     return document.documentElement.classList.contains("dark");
   });
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const currentWaveHeight = 1.0;
 
   useEffect(() => {
