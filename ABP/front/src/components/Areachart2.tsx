@@ -22,6 +22,7 @@ import {
   getChartDataLast12Hours,
   getChartDataLast3Days,
 } from "@/services/dadoService";
+import { motion } from "framer-motion";
 
 interface DataEntry {
   name: string;
@@ -70,7 +71,6 @@ export default function Areachart2() {
   }, [activeChart]);
 
   useEffect(() => {
-    // Pega as cores do tema via CSS custom properties
     const root = getComputedStyle(document.documentElement);
     setColors({
       primary: root.getPropertyValue("--primary")?.trim() || "#8884d8",
@@ -87,29 +87,29 @@ export default function Areachart2() {
           Pico de velocidade / Média de velocidade (m/s)
         </CardTitle>
 
-        {/* Botões no canto superior direito */}
         <div className="flex gap-2">
-          {[
-            { key: "live", label: "Live" },
-            { key: "12h", label: "4 horas" },
-            { key: "3d", label: "6 horas" },
-          ].map(({ key, label }) => {
-            const isActive = activeChart === key;
-            return (
-              <button
-                key={key}
-                onClick={() => setActiveChart(key as ChartType)}
-                className={`px-3 py-1 rounded-md font-semibold transition-colors
-                  ${
-                    isActive
-                      ? "bg-blue-600 text-white shadow-lg"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                  }`}
-              >
-                {label}
-              </button>
-            );
-          })}
+          {[{ key: "live", label: "Live" }, { key: "12h", label: "4 horas" }, { key: "3d", label: "6 horas" }].map(
+            ({ key, label }) => {
+              const isActive = activeChart === key;
+              return (
+                <motion.button
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.15 }}
+                  key={key}
+                  onClick={() => setActiveChart(key as ChartType)}
+                  className={`px-4 py-1 rounded-md font-semibold transition-colors duration-200 border text-sm
+                    ${
+                      isActive
+                        ? "bg-primary text-white border-primary shadow hover:bg-primary/80"
+                        : "bg-muted text-muted-foreground hover:bg-muted/60 border-border"
+                    }`}
+                >
+                  {label}
+                </motion.button>
+              );
+            }
+          )}
         </div>
       </CardHeader>
 
@@ -120,10 +120,10 @@ export default function Areachart2() {
               <CartesianGrid stroke={colors.grid} strokeDasharray="3 3" />
               <XAxis dataKey="name" stroke={colors.text} />
               <YAxis
-  yAxisId="left"
-  stroke={colors.text}
-  tickFormatter={(value) => value.toFixed(2)}
-/>
+                yAxisId="left"
+                stroke={colors.text}
+                tickFormatter={(value) => value.toFixed(2)}
+              />
               <Tooltip
                 contentStyle={{
                   backgroundColor: "var(--popover)",

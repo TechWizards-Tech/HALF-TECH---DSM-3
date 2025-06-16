@@ -66,10 +66,8 @@ export default function WeatherTable({ className }: WeatherTableProps) {
     if (newPage < 1 || newPage > totalPages || newPage === currentPage) return;
     setDirection(newPage > currentPage ? "left" : "right");
     setCurrentPage(newPage);
-    //window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // Variants para animação lateral
   const variants = {
     enter: (direction: string) => ({
       x: direction === "left" ? 300 : -300,
@@ -85,7 +83,6 @@ export default function WeatherTable({ className }: WeatherTableProps) {
     }),
   };
 
-  // Gera os números das páginas, com limite para não mostrar muitos
   const maxPageButtons = 7;
   let startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
   let endPage = startPage + maxPageButtons - 1;
@@ -128,11 +125,7 @@ export default function WeatherTable({ className }: WeatherTableProps) {
         </div>
       </div>
 
-      <AnimatePresence
-        mode="wait"
-        custom={direction}
-        initial={false}
-      >
+      <AnimatePresence mode="wait" custom={direction} initial={false}>
         <motion.table
           key={currentPage}
           custom={direction}
@@ -182,48 +175,59 @@ export default function WeatherTable({ className }: WeatherTableProps) {
         </motion.table>
       </AnimatePresence>
 
-      {/* Paginação */}
       <div className="flex justify-center items-center gap-2 p-4">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.15 }}
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
           className={cn(
-            "px-3 py-1 rounded disabled:opacity-50 disabled:cursor-not-allowed",
+            "px-3 py-1 rounded font-semibold border text-sm transition-colors duration-200",
             currentPage === 1
-              ? "bg-muted text-muted-foreground"
-              : "bg-muted text-muted-foreground hover:bg-primary hover:text-white cursor-pointer"
+              ? "bg-muted text-muted-foreground border-border cursor-not-allowed"
+              : "bg-muted text-muted-foreground hover:bg-primary hover:text-white border-border"
           )}
         >
           Anterior
-        </button>
+        </motion.button>
 
-        {pageNumbers.map((page) => (
-          <button
-            key={page}
-            onClick={() => handlePageChange(page)}
-            className={cn(
-              "px-3 py-1 rounded",
-              currentPage === page
-                ? "bg-primary text-white"
-                : "bg-muted text-muted-foreground hover:bg-primary hover:text-white cursor-pointer"
-            )}
-          >
-            {page}
-          </button>
-        ))}
+        {pageNumbers.map((page) => {
+          const isActive = currentPage === page;
+          return (
+            <motion.button
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.15 }}
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={cn(
+                "px-3 py-1 rounded font-semibold border text-sm transition-colors duration-200",
+                isActive
+                  ? "bg-primary text-white border-primary shadow hover:bg-primary/80"
+                  : "bg-muted text-muted-foreground hover:bg-primary hover:text-white border-border"
+              )}
+            >
+              {page}
+            </motion.button>
+          );
+        })}
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.15 }}
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
           className={cn(
-            "px-3 py-1 rounded disabled:opacity-50 disabled:cursor-not-allowed",
+            "px-3 py-1 rounded font-semibold border text-sm transition-colors duration-200",
             currentPage === totalPages
-              ? "bg-muted text-muted-foreground"
-              : "bg-muted text-muted-foreground hover:bg-primary hover:text-white cursor-pointer"
+              ? "bg-muted text-muted-foreground border-border cursor-not-allowed"
+              : "bg-muted text-muted-foreground hover:bg-primary hover:text-white border-border"
           )}
         >
           Próxima
-        </button>
+        </motion.button>
       </div>
     </div>
   );
