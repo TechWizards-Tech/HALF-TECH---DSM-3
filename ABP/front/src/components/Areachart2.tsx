@@ -119,7 +119,11 @@ export default function Areachart2() {
             <RechartsAreaChart data={data}>
               <CartesianGrid stroke={colors.grid} strokeDasharray="3 3" />
               <XAxis dataKey="name" stroke={colors.text} />
-              <YAxis yAxisId="left" stroke={colors.text} />
+              <YAxis
+  yAxisId="left"
+  stroke={colors.text}
+  tickFormatter={(value) => value.toFixed(2)}
+/>
               <Tooltip
                 contentStyle={{
                   backgroundColor: "var(--popover)",
