@@ -140,7 +140,7 @@ export default function WeatherTable({ className }: WeatherTableProps) {
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.3 }}
           className="min-w-full text-sm text-left text-foreground bg-background"
         >
           <thead className="text-xs uppercase bg-muted text-muted-foreground">
