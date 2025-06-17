@@ -20,18 +20,62 @@
         </button>
     </div>
 
-    <script type="text/javascript" src="./script.js"></script>
-    <script type="text/javascript">
+<script src="./script.js"></script>
+<script>
   var dosbox = new Dosbox({
     id: "dosbox",
+    width: 1280,
+    height: 960,
+    autolock: true,
+    fullscreen: false,
     onload: function (dosbox) {
       dosbox.run("./roms/UltDoom.zip", "DOOM.EXE");
     },
     onrun: function (dosbox, app) {
-      console.log("App '" + app + "' is runned");
+      console.log("App '" + app + "' is running");
     }
   });
+
+   const dosboxEl = document.getElementById("dosbox");
+
+  function enterFullscreen() {
+    if (dosboxEl.requestFullscreen) {
+      dosboxEl.requestFullscreen();
+    } else if (dosboxEl.webkitRequestFullscreen) {
+      dosboxEl.webkitRequestFullscreen();
+    } else if (dosboxEl.msRequestFullscreen) {
+      dosboxEl.msRequestFullscreen();
+    }
+    dosboxEl.classList.add("fullscreen");
+  }
+
+  function exitFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+    dosboxEl.classList.remove("fullscreen");
+  }
+
+  document.querySelector("button.wrapper").addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+      enterFullscreen();
+    } else {
+      exitFullscreen();
+    }
+  });
+
+  document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement) {
+      dosboxEl.classList.remove("fullscreen");
+    }
+  });
+
 </script>
+
 </body>
 
 </html>
