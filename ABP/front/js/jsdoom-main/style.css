@@ -1,3 +1,4 @@
+/* Fundo infernal em gradiente */
 body, html {
   height: 100%;
   margin: 0;
@@ -10,16 +11,34 @@ body, html {
   text-shadow: 0 0 10px #ff4500, 0 0 20px #ff0000;
 }
 
-/* Optional: add a subtle flicker effect */
+/* Animação de flicker para dar clima */
 @keyframes flicker {
-  0%, 100% {opacity: 1;}
-  50% {opacity: 0.85;}
-}
-.container {
-  animation: flicker 3s infinite;
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
 }
 
-/* Style your button to match the hellish theme */
+/* Centralização do conteúdo */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  animation: flicker 3s infinite;
+  padding: 20px;
+}
+
+/* Frame do DOSBox */
+#dosbox {
+  width: 640px;
+  height: 480px;
+  max-width: 100%;
+  background-color: black;
+  box-shadow: 0 0 20px #ff3300;
+  margin-bottom: 20px;
+}
+
+/* Botão estilizado para clima Doom */
 button.wrapper {
   background: #550000;
   border: 2px solid #ff3300;
@@ -30,7 +49,9 @@ button.wrapper {
   cursor: pointer;
   box-shadow: 0 0 15px #ff3300;
   transition: background 0.3s ease;
+  margin-top: 10px;
 }
+
 button.wrapper:hover {
   background: #ff3300;
   color: #330000;
