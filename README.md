@@ -31,7 +31,7 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 |--------|-------------|-------------|-------------|--------|
 | 01     | [Sprint 01](#sprint-1) | 24/03/2025 | 15/04/2025 |  ✔  |
 | 02     | [Sprint 02](#sprint-2) | 16/04/2025 | 13/05/2025 | ✔   |
-| 03     | [Sprint 03](#sprint-3) | 14/05/2025 | 11/06/2025 |    |
+| 03     | [Sprint 03](#sprint-3) | 14/05/2025 | 11/06/2025 | ✔   |
 
 <br>
 
@@ -42,17 +42,17 @@ Clique [aqui](https://trello.com/b/OffzP11L/backlog-list-half-tech) para acessar
 | REQUISITO FUNCIONAL_ID | REQUISITOS                                                                                                | SPRINTS |
 |------------------------|-----------------------------------------------------------------------------------------------------------|---------|
 |RF-1                    |O sistema deve restringir o acesso a usuários autenticados                                                 |#02✔    |
-|RF-2                    |O sistema deve permitir a visualização do histórico de dados de cada estação em formato tabular            |#03      |
+|RF-2                    |O sistema deve permitir a visualização do histórico de dados de cada estação em formato tabular            |#03 ✔      |
 |RF-3                    |O sistema deve exibir gráficos com os parâmetros coletados por uma estação meteorológica                   |#02✔      |
-|RF-4                    |O sistema deve permitir a comparação de um mesmo parâmetro entre diferentes estações por meio de gráficos  |#03      |
-|RF-5                    |O sistema deve possibilitar o download de dados em formato CSV                                             |#03      |
+|RF-4                    |O sistema deve permitir a comparação de um mesmo parâmetro entre diferentes estações por meio de gráficos  |#03✔        |
+|RF-5                    |O sistema deve possibilitar o download de dados em formato CSV                                             |#03✔       |
 <br>
 
 ## REQUISITOS NÃO FUNCIONAIS
 
 | REQUISITO NÃO_FUNCIONAL_ID | REQUISITOS                                                                                          | SPRINTS |
 |----------------------------|-----------------------------------------------------------------------------------------------------|---------|
-|RNF-01                       |O sistema deve exibir gráficos interativos para melhor análise dos dados                             |#03      |
+|RNF-01                       |O sistema deve exibir gráficos interativos para melhor análise dos dados                             |#03✔      |
 |RNF-02                       |A interface deve ser responsiva, garantindo um layout consistente em diferentes dispositivos e tamanhos de tela| #01✔ #02✔    |
 |RNF-03                       |O sistema deve incluir uma página explicativa sobre o projeto                                        |#01✔        |
 <br>
@@ -116,3 +116,7 @@ Nesta primeira sprint, a nossa equipe irá focar no desenvolvimento do protótip
 ## :page_with_curl: SPRINT 2
 
 Durante a Sprint 2, a equipe irá implementar o sistema de **autenticação de usuários**, para garantir que apenas usuários logados possam realizar download dos dados meteorológicos (função que será implementada na sprint 3). Também será desenvolvida a funcionalidade de **exibição de gráficos interativos**, permitindo a visualização dos dados coletados por cada estação meteorológica. Além disso, a interface foi aprimorada para garantir **responsividade**, oferecendo uma boa experiência em diferentes dispositivos e tamanhos de tela.
+
+## :page_with_curl: SPRINT 3
+
+Na Sprint 3, a equipe implementou a visualização do histórico de dados coletados da estação meteorológica, facilitando o acompanhamento detalhado das informações registradas.Além disso, foi adicionado o recurso de download de dados em formato CSV, permitindo que os usuários exportem informações para uso externo. Essas entregas complementam as funcionalidades iniciadas nas sprints anteriores e avançam na disponibilização de dados ao usuário final.
