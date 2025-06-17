@@ -1,0 +1,38 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  background: 
+    radial-gradient(ellipse at center, rgba(255, 100, 0, 0.7) 0%, rgba(100, 0, 0, 0.9) 70%),
+    linear-gradient(135deg, #330000 0%, #660000 40%, #cc3300 70%, #ff6600 100%);
+  background-blend-mode: overlay;
+  color: #ff4500;
+  text-shadow: 0 0 10px #ff4500, 0 0 20px #ff0000;
+}
+
+/* Optional: add a subtle flicker effect */
+@keyframes flicker {
+  0%, 100% {opacity: 1;}
+  50% {opacity: 0.85;}
+}
+.container {
+  animation: flicker 3s infinite;
+}
+
+/* Style your button to match the hellish theme */
+button.wrapper {
+  background: #550000;
+  border: 2px solid #ff3300;
+  color: #ff6600;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #ff3300;
+  transition: background 0.3s ease;
+}
+button.wrapper:hover {
+  background: #ff3300;
+  color: #330000;
+  box-shadow: 0 0 25px #ff6600;
+}
