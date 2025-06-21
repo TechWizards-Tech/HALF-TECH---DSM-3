@@ -1,62 +1,125 @@
-html,
-body {
-  min-height: 100%;
-}
-body {
-  font-family: sans-serif;
-  text-align: center;
-  background: #111 url(https://goo.gl/D1AeUS) center no-repeat;
-  background-size: cover;
-  color: #aaa;
+/* --- Base Doom Style: Hellish Background --- */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  background:
+    radial-gradient(ellipse at center, rgba(255, 100, 0, 0.7) 0%, rgba(100, 0, 0, 0.9) 70%),
+    linear-gradient(135deg, #330000 0%, #660000 40%, #cc3300 70%, #ff6600 100%);
+  background-blend-mode: overlay;
+  color: #ff4500;
+  text-shadow: 0 0 10px #ff4500, 0 0 20px #ff0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* --- Flickering for Doom ambiance --- */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+/* --- Container exactly fits game size --- */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: flicker 3s infinite;
+  padding: 0;
+  margin: 0;
 }
 
-.dosbox-container {
-  margin: 10% auto 0 auto;
+/* --- DOSBox Wrapper --- */
+#dosbox {
   width: 640px;
   height: 400px;
+  background-color: black;
+  box-shadow: 0 0 20px #ff3300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
-.dosbox-container > .dosbox-overlay {
-  background: url(./assets/img/overlay.png) center no-repeat;
-  background-size: 100%;
-}
-
-#dosbox:hover .dosbox-start {
-  opacity: 1;
-}
-
-#dosbox .dosbox-start {
-  background: url(https://static.tumblr.com/98vyz1x/eK4lj7luf/header.png) center no-repeat;
-  background-size: 150px;
+/* --- CRT Shell (inside #dosbox) --- */
+.crt {
+  position: relative;
+  width: 100%;
   height: 100%;
+  background-color: black;
+  border-radius: 8px;
+  overflow: hidden;
+  filter: contrast(1.2) brightness(1.05) saturate(1.3);
+  transform: scale(1.005);
+}
+
+/* --- Scanlines Overlay --- */
+.crt::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 2px,
+    transparent 3px
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* --- Vignette Glow --- */
+.crt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 80%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* --- CRT-style Canvas Tweaks --- */
+#dosbox canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  object-fit: contain;
   image-rendering: pixelated;
-  top: 4% !important;
-  color: rgba(0, 0, 0, 0);
-  filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.95));
-  opacity: 0;
+  animation: rgbFlicker 0.15s infinite;
+  transform: perspective(800px) rotateX(1deg) scale(1.02);
 }
 
-.dosbox-powered {
-  opacity: 0;
+/* --- RGB Flicker Animation --- */
+@keyframes rgbFlicker {
+  0%, 100% {
+    filter: drop-shadow(0 0 1px red) drop-shadow(0 0 2px green) drop-shadow(0 0 1px blue);
+    opacity: 1;
+  }
+  50% {
+    filter: drop-shadow(0 0 0.5px red) drop-shadow(0 0 1px green) drop-shadow(0 0 0.5px blue);
+    opacity: 0.97;
+  }
 }
 
-button {
-  border: 0;
-  margin: 10px;
+/* --- Doom-Style Fullscreen Button --- */
+button.wrapper {
+  background: #550000;
+  border: 2px solid #ff3300;
+  color: #ff6600;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 20px;
   cursor: pointer;
-  font-weight: 700;
+  box-shadow: 0 0 15px #ff3300;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+  border-radius: 6px;
 }
 
-p {
-  font-size: 32px;
-}
-
-a {
-  color: #aaa;
+button.wrapper:hover {
+  background: #ff3300;
+  color: #330000;
+  box-shadow: 0 0 25px #ff6600;
 }
