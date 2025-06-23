@@ -1,81 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS DOOM 🕹</title>
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <link rel="stylesheet" type="text/css" href="./styles/button.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JS DOOM 🕹</title>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
 </head>
-
 <body>
-    <div class="container">
-        <div id="dosbox"></div>
-        <button class="wrapper" onclick="dosbox.requestFullScreen();">
-            <a><span>FULLSCREEN</span></a>
-        </button>
+  <div class="background-crt"></div>
+
+  <div class="container">
+    <div class="win95-frame">
+      <div class="title-bar">
+        <span class="title">Doom.exe</span>
+        <button class="close-button" onclick="location.reload()">✕</button>
+      </div>
+      <div id="dosbox"></div>
     </div>
 
-<script src="./script.js"></script>
-<script>
-  var dosbox = new Dosbox({
-    id: "dosbox",
-    width: 1280,
-    height: 960,
-    autolock: true,
-    fullscreen: false,
-    onload: function (dosbox) {
-      dosbox.run("./roms/UltDoom.zip", "DOOM.EXE");
-    },
-    onrun: function (dosbox, app) {
-      console.log("App '" + app + "' is running");
+    <div class="button-bar">
+      <button class="wrapper" onclick="toggleFullscreen()">FULLSCREEN</button>
+      <button class="wrapper" onclick="location.reload()">CLOSE DOOM</button>
+    </div>
+  </div>
+
+  <!-- Your audio element -->
+  <audio id="boot-static" src="./assets/sounds/static.mp3" preload="auto"></audio>
+
+  <script src="./script.js"></script>
+  <script>
+    // Play audio once DOM is loaded
+    window.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('boot-static');
+      if (audio) {
+        audio.play().catch(e => {
+          console.log('Audio play failed:', e);
+        });
+      }
+    });
+
+    const dosbox = new Dosbox({
+      id: "dosbox",
+      width: 1280,
+      height: 960,
+      autolock: true,
+      fullscreen: false,
+      onload: function (dosbox) {
+        dosbox.run("./roms/UltDoom.zip", "DOOM.EXE");
+      },
+      onrun: function (dosbox, app) {
+        console.log("App '" + app + "' is running");
+      }
+    });
+
+    const dosboxEl = document.getElementById("dosbox");
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        if (dosboxEl.requestFullscreen) {
+          dosboxEl.requestFullscreen();
+        }
+        dosboxEl.classList.add("fullscreen");
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+        dosboxEl.classList.remove("fullscreen");
+      }
     }
-  });
 
-   const dosboxEl = document.getElementById("dosbox");
-
-  function enterFullscreen() {
-    if (dosboxEl.requestFullscreen) {
-      dosboxEl.requestFullscreen();
-    } else if (dosboxEl.webkitRequestFullscreen) {
-      dosboxEl.webkitRequestFullscreen();
-    } else if (dosboxEl.msRequestFullscreen) {
-      dosboxEl.msRequestFullscreen();
-    }
-    dosboxEl.classList.add("fullscreen");
-  }
-
-  function exitFullscreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-    dosboxEl.classList.remove("fullscreen");
-  }
-
-  document.querySelector("button.wrapper").addEventListener("click", () => {
-    if (!document.fullscreenElement) {
-      enterFullscreen();
-    } else {
-      exitFullscreen();
-    }
-  });
-
-  document.addEventListener("fullscreenchange", () => {
-    if (!document.fullscreenElement) {
-      dosboxEl.classList.remove("fullscreen");
-    }
-  });
-
-</script>
-
+    document.addEventListener("fullscreenchange", () => {
+      if (!document.fullscreenElement) {
+        dosboxEl.classList.remove("fullscreen");
+      }
+    });
+  </script>
 </body>
-
 </html>
